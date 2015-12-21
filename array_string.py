@@ -29,6 +29,19 @@ def is_permutation(str1, str2):
     return len(str1_set) == 0
 
 
+# DETERMINE IF A STRING S1 IS A ROTATION OF ANOTHER STRING S2
+
+def is_rotation(s1, s2):
+    if len(s1) == len(s2):
+        double_str = s1 + s1
+        if s2 in double_str:
+            return True
+        else:
+            return False
+    else:
+        return False
+
+
 if __name__ == "__main__":
     # execute only if run as a script
     main()
