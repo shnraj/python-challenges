@@ -28,9 +28,12 @@ def is_permutation(str1, str2):
     str1_set.symmetric_difference_update(str2_set)
     return len(str1_set) == 0
 
+# Other solutions: sorting, hash map lookup
+
 
 # DETERMINE IF A STRING S1 IS A ROTATION OF ANOTHER STRING S2
 
+# My solution - Time: O(n) Space: O(2n)
 def is_rotation(s1, s2):
     if len(s1) == len(s2):
         double_str = s1 + s1
