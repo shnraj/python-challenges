@@ -56,6 +56,14 @@ class LinkedList():
                 seen_values.append(current_node.get_value())
             current_node = current_node.get_next()
 
+    def array_print(self):
+        current_node = self.head
+        values = []
+        while current_node:
+            values.append(current_node.get_value())
+            current_node = current_node.get_next()
+        return values
+
 
 class LinkedListNode():
 
