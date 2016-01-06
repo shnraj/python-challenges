@@ -40,16 +40,21 @@ class LinkedList():
         while current_node:
             if current_node.get_value() == value:
                 if prev_node is None:
-                    self.head = None
+                    self.head = current_node.get_next()
                 else:
                     prev_node.set_next(current_node.get_next())
             prev_node = current_node
             current_node = current_node.get_next()
-        return
 
-    # REMOVE DUPLICATES FROM A LINKED LIST
-
-    # def remove_dups(self):
+    def remove_dups(self):
+        current_node = self.head
+        seen_values = []
+        while current_node:
+            if current_node.get_value() in seen_values:
+                self.delete(value=current_node.get_value())
+            else:
+                seen_values.append(current_node.get_value())
+            current_node = current_node.get_next()
 
 
 class LinkedListNode():
