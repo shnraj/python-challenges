@@ -17,7 +17,6 @@ class LinkedList():
         for value in values_array:
             self.add_node(value=value)
 
-    # Size of LinkedList
     def size(self):
         count = 0
         current_node = self.head
@@ -26,7 +25,6 @@ class LinkedList():
             current_node = current_node.get_next()
         return count
 
-    # Search LinkedList for value
     def search(self, value):
         current_node = self.head
         while current_node:
@@ -35,6 +33,19 @@ class LinkedList():
             else:
                 current_node = current_node.get_next()
         return None
+
+    def delete(self, value):
+        current_node = self.head
+        prev_node = None
+        while current_node:
+            if current_node.get_value() == value:
+                if prev_node is None:
+                    self.head = None
+                else:
+                    prev_node.set_next(current_node.get_next())
+            prev_node = current_node
+            current_node = current_node.get_next()
+        return
 
     # REMOVE DUPLICATES FROM A LINKED LIST
 
