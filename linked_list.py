@@ -20,14 +20,14 @@ class LinkedList():
     def size(self):
         count = 0
         current_node = self.head
-        while current_node:
+        while current_node is not None:
             count += 1
             current_node = current_node.get_next()
         return count
 
     def search(self, value):
         current_node = self.head
-        while current_node:
+        while current_node is not None:
             if current_node.get_value() == value:
                 return current_node
             else:
@@ -37,7 +37,7 @@ class LinkedList():
     def delete(self, value):
         current_node = self.head
         prev_node = None
-        while current_node:
+        while current_node is not None:
             if current_node.get_value() == value:
                 self.remove_node(node=current_node, prev_node=prev_node)
             prev_node = current_node
@@ -51,20 +51,20 @@ class LinkedList():
 
     def remove_dups(self):
         current_node = self.head
-        seen_values = []
+        seen_values = set()
         prev_node = None
-        while current_node:
+        while current_node is not None:
             if current_node.get_value() in seen_values:
                 self.remove_node(node=current_node, prev_node=prev_node)
             else:
-                seen_values.append(current_node.get_value())
-            prev_node = current_node
+                seen_values.add(current_node.get_value())
+                prev_node = current_node
             current_node = current_node.get_next()
 
     def get_all_data(self):
         current_node = self.head
         values = []
-        while current_node:
+        while current_node is not None:
             values.append(current_node.get_value())
             current_node = current_node.get_next()
         return values
