@@ -39,24 +39,29 @@ class LinkedList():
         prev_node = None
         while current_node:
             if current_node.get_value() == value:
-                if prev_node is None:
-                    self.head = current_node.get_next()
-                else:
-                    prev_node.set_next(current_node.get_next())
+                self.remove_node(node=current_node, prev_node=prev_node)
             prev_node = current_node
             current_node = current_node.get_next()
+
+    def remove_node(self, node, prev_node):
+        if prev_node is None:
+            self.head = node.get_next()
+        else:
+            prev_node.set_next(node.get_next())
 
     def remove_dups(self):
         current_node = self.head
         seen_values = []
+        prev_node = None
         while current_node:
             if current_node.get_value() in seen_values:
-                self.delete(value=current_node.get_value())
+                self.remove_node(node=current_node, prev_node=prev_node)
             else:
                 seen_values.append(current_node.get_value())
+            prev_node = current_node
             current_node = current_node.get_next()
 
-    def array_print(self):
+    def get_all_data(self):
         current_node = self.head
         values = []
         while current_node:

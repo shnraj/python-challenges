@@ -59,10 +59,12 @@ class TestLinkedList(unittest.TestCase):
 
     def test_remove_dups(self):
         ll = LinkedList()
+        ll.remove_dups()
+        self.assertTrue(ll.get_all_data() == [])
+
         ll.add_nodes_with_array_of_values(values_array=[1, 2, 3, 2])
         ll.remove_dups()
-        self.assertTrue(ll.search(value=2) is None)
-        self.assertTrue(ll.search(value=3) is not None)
+        self.assertTrue(ll.get_all_data() == [2, 3, 1])
 
 
 if __name__ == '__main__':
