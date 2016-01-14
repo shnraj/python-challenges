@@ -61,6 +61,23 @@ class TestLinkedList(unittest.TestCase):
         self.assertTrue(ll.search(value=3) is not None)
         self.assertTrue(ll.get_all_data() == [3, 1])
 
+    def test_delete_node(self):
+        ll = LinkedList()
+        ll.delete_node(node=None)
+        self.assertTrue(ll.get_all_data() == [])
+
+        node = LinkedListNode()
+        ll = LinkedList(head=node)
+        ll.delete_node(node=node)
+        self.assertTrue(ll.get_all_data() == [])
+
+        ll = LinkedList()
+        ll.add_node(value=1)
+        node2 = ll.add_node(value=2)
+        ll.add_node(value=3)
+        ll.delete_node(node=node2)
+        self.assertTrue(ll.get_all_data() == [3, 1])
+
     def test_remove_dups(self):
         ll = LinkedList()
         ll.remove_dups()

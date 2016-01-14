@@ -12,6 +12,7 @@ class LinkedList():
         new_node = LinkedListNode(value)
         new_node.set_next(self.head)
         self.head = new_node
+        return self.head
 
     def add_nodes_with_array_of_values(self, values_array):
         for value in values_array:
@@ -39,6 +40,15 @@ class LinkedList():
         prev_node = None
         while current_node is not None:
             if current_node.get_value() == value:
+                self.remove_node(node=current_node, prev_node=prev_node)
+            prev_node = current_node
+            current_node = current_node.get_next()
+
+    def delete_node(self, node):
+        current_node = self.head
+        prev_node = None
+        while current_node is not None:
+            if current_node == node:
                 self.remove_node(node=current_node, prev_node=prev_node)
             prev_node = current_node
             current_node = current_node.get_next()
