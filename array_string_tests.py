@@ -2,6 +2,7 @@ import unittest
 from array_string import has_unique_chars
 from array_string import is_permutation
 from array_string import is_rotation
+from array_string import compress_string
 
 
 class TestArrayString(unittest.TestCase):
@@ -26,6 +27,12 @@ class TestArrayString(unittest.TestCase):
         self.assertFalse(is_rotation('ddd', 'dddd'))
         self.assertTrue(is_rotation(' ', ' '))
 
+    def test_compress_string(self):
+        self.assertEqual(compress_string(None), None)
+        self.assertEqual(compress_string(''), '')
+        self.assertEqual(compress_string('A'), 'A')
+        self.assertEqual(compress_string('AABBCC'), 'AABBCC')
+        self.assertEqual(compress_string('AAABCCDDDD'), 'A3B1C2D4')
 
 if __name__ == '__main__':
     unittest.main()

@@ -45,6 +45,27 @@ def is_rotation(s1, s2):
         return False
 
 
+# COMPRESS A STRING
+
+def compress_string(string):
+    compressed_str = ''
+    if string:
+        current_count = 1
+        compressed_str += string[0]
+        for letter in string[1:]:
+            current_letter = compressed_str[-1]
+            if letter == current_letter:
+                current_count += 1
+            else:
+                compressed_str += str(current_count)
+                compressed_str += letter
+                current_count = 1
+        compressed_str += str(current_count)
+        if len(compressed_str) < len(string):
+            return compressed_str
+    return string
+
+
 if __name__ == "__main__":
     # execute only if run as a script
     main()
