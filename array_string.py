@@ -66,6 +66,24 @@ def compress_string(string):
     return string
 
 
+# REVERSE LIST OF CHARACTERS IN PLACE
+# We cannot reverse a string in place because strings are immutable
+# Both slice operator and reverse function create new strings
+
+def reverse_list(list_of_chars):
+    if list_of_chars:
+        index = 0
+        length = len(list_of_chars)
+        for char in list_of_chars:
+            if index < length/2:
+                new_index = length - index - 1
+                temp_char = list_of_chars[new_index]
+                list_of_chars[new_index] = char
+                list_of_chars[index] = temp_char
+                index += 1
+    return list_of_chars
+
+
 if __name__ == "__main__":
     # execute only if run as a script
     main()

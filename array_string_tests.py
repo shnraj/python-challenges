@@ -3,6 +3,7 @@ from array_string import has_unique_chars
 from array_string import is_permutation
 from array_string import is_rotation
 from array_string import compress_string
+from array_string import reverse_list
 
 
 class TestArrayString(unittest.TestCase):
@@ -33,6 +34,15 @@ class TestArrayString(unittest.TestCase):
         self.assertEqual(compress_string('A'), 'A')
         self.assertEqual(compress_string('AABBCC'), 'AABBCC')
         self.assertEqual(compress_string('AAABCCDDDD'), 'A3B1C2D4')
+
+    def test_reverse_list(self):
+        self.assertEqual(reverse_list(None), None)
+        self.assertEqual(reverse_list(['']), [''])
+        self.assertEqual(reverse_list(['f', 'o', 'o']),
+                         ['o', 'o', 'f'])
+        self.assertEqual(reverse_list(['f', 'o', 'o', ' ', 'b', 'a', 'r']),
+                         ['r', 'a', 'b', ' ', 'o', 'o', 'f'])
+        self.assertEqual(reverse_list(['A']), ['A'])
 
 if __name__ == '__main__':
     unittest.main()
