@@ -7,28 +7,28 @@ class TestLinkedList(unittest.TestCase):
 
     def test_init(self):
         ll = LinkedList()
-        self.assertTrue(ll.get_head() is None)
+        self.assertTrue(ll.head is None)
 
         ll_node = LinkedListNode()
-        self.assertTrue(ll_node.get_value() is None)
-        self.assertTrue(ll_node.get_next() is None)
+        self.assertTrue(ll_node.value is None)
+        self.assertTrue(ll_node.next_node is None)
 
         ll_node_2 = LinkedListNode(value=2)
-        self.assertTrue(ll_node_2.get_value() == 2)
-        self.assertTrue(ll_node_2.get_next() is None)
+        self.assertTrue(ll_node_2.value == 2)
+        self.assertTrue(ll_node_2.next_node is None)
 
         ll_2 = LinkedList(head=ll_node_2)
-        self.assertTrue(ll_2.get_head() is ll_node_2)
+        self.assertTrue(ll_2.head is ll_node_2)
 
         ll_node_3 = LinkedListNode(value=2, next_node=ll_node_2)
-        self.assertTrue(ll_node_3.get_value() == 2)
-        self.assertTrue(ll_node_3.get_next() == ll_node_2)
+        self.assertTrue(ll_node_3.value == 2)
+        self.assertTrue(ll_node_3.next_node == ll_node_2)
 
     def test_add_node(self):
         ll = LinkedList()
         ll.add_node(value=1)
-        self.assertTrue(ll.get_head() is not None)
-        self.assertTrue(ll.get_head().get_value() == 1)
+        self.assertTrue(ll.head is not None)
+        self.assertTrue(ll.head.value == 1)
 
     def test_size(self):
         ll = LinkedList()
