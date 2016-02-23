@@ -84,6 +84,18 @@ def reverse_list(list_of_chars):
     return list_of_chars
 
 
+# REMOVE DUPLICATES IN ORDERED ARRAY
+def remove_duplicates(arr):
+    if not arr:
+        return arr
+    else:
+        new_arr = []
+        for i in range(0, len(arr)):
+            if i+1 == len(arr) or arr[i] != arr[i+1]:
+                new_arr.append(arr[i])
+        return new_arr
+
+
 if __name__ == "__main__":
     # execute only if run as a script
     main()

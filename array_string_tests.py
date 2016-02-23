@@ -4,6 +4,7 @@ from array_string import is_permutation
 from array_string import is_rotation
 from array_string import compress_string
 from array_string import reverse_list
+from array_string import remove_duplicates
 
 
 class TestArrayString(unittest.TestCase):
@@ -43,6 +44,15 @@ class TestArrayString(unittest.TestCase):
         self.assertEqual(reverse_list(['f', 'o', 'o', ' ', 'b', 'a', 'r']),
                          ['r', 'a', 'b', ' ', 'o', 'o', 'f'])
         self.assertEqual(reverse_list(['A']), ['A'])
+
+    def test_remove_duplicates(self):
+        self.assertEqual(remove_duplicates(None), None)
+        self.assertEqual(remove_duplicates([]), [])
+        self.assertEqual(remove_duplicates([1, 2, 3]), [1, 2, 3])
+        self.assertEqual(remove_duplicates([1, 1, 2, 3, 3]), [1, 2, 3])
+        self.assertEqual(remove_duplicates([1, 2, 2, 2, 3]), [1, 2, 3])
+        self.assertEqual(remove_duplicates([3, 4, 4, 5]), [3, 4, 5])
+
 
 if __name__ == '__main__':
     unittest.main()
