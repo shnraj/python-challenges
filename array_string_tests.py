@@ -51,7 +51,7 @@ class TestArrayString(unittest.TestCase):
         self.assertEqual(remove_duplicates([1, 2, 3]), [1, 2, 3])
         self.assertEqual(remove_duplicates([1, 1, 2, 3, 3]), [1, 2, 3])
         self.assertEqual(remove_duplicates([1, 2, 2, 2, 3]), [1, 2, 3])
-        self.assertEqual(remove_duplicates([3, 4, 4, 5]), [3, 4, 5])
+        self.assertEqual(remove_duplicates([4, 3, 5, 4, 3]), [3, 4, 5])
 
 
 if __name__ == '__main__':

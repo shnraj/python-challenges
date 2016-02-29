@@ -84,15 +84,16 @@ def reverse_list(list_of_chars):
     return list_of_chars
 
 
-# REMOVE DUPLICATES IN ORDERED ARRAY
+# REMOVE DUPLICATES IN ARRAY OF NUMBERS
 def remove_duplicates(arr):
     if not arr:
         return arr
     else:
+        sorted_arr = sorted(arr)
         new_arr = []
-        for i in range(0, len(arr)):
-            if i+1 == len(arr) or arr[i] != arr[i+1]:
-                new_arr.append(arr[i])
+        for i in range(0, len(sorted_arr)):
+            if i+1 == len(sorted_arr) or sorted_arr[i] != sorted_arr[i+1]:
+                new_arr.append(sorted_arr[i])
         return new_arr
 
 
