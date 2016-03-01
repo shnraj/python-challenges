@@ -56,7 +56,10 @@ class TestArrayString(unittest.TestCase):
         self.assertEqual(remove_duplicates([4, 3, 5, 4, 3]), [3, 4, 5])
 
     def test_sort_users(self):
+        self.assertEqual(sort_users(None), None)
+        self.assertEqual(sort_users([]), [])
         user_1 = User('sahana', 23)
+        self.assertEqual(sort_users([user_1]), [user_1])
         user_2 = User('alex', 24)
         user_3 = User('oliver', 2)
         self.assertEqual(sort_users([user_1, user_2, user_3]),
