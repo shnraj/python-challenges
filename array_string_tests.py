@@ -5,6 +5,8 @@ from array_string import is_rotation
 from array_string import compress_string
 from array_string import reverse_list
 from array_string import remove_duplicates
+from array_string import User
+from array_string import sort_users
 
 
 class TestArrayString(unittest.TestCase):
@@ -52,6 +54,13 @@ class TestArrayString(unittest.TestCase):
         self.assertEqual(remove_duplicates([1, 1, 2, 3, 3]), [1, 2, 3])
         self.assertEqual(remove_duplicates([1, 2, 2, 2, 3]), [1, 2, 3])
         self.assertEqual(remove_duplicates([4, 3, 5, 4, 3]), [3, 4, 5])
+
+    def test_sort_users(self):
+        user_1 = User('sahana', 23)
+        user_2 = User('alex', 24)
+        user_3 = User('oliver', 2)
+        self.assertEqual(sort_users([user_1, user_2, user_3]),
+                         [user_3, user_1, user_2])
 
 
 if __name__ == '__main__':

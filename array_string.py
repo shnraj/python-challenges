@@ -97,6 +97,27 @@ def remove_duplicates(arr):
         return new_arr
 
 
+# SORT ARRAY OF USERS BY AGE
+class User:
+    def __init__(self, name=None, age=None):
+        self.name = name
+        self.age = age
+
+    def __repr__(self):
+        return '{}: {} {}'.format(self.__class__.__name__,
+                                  self.name,
+                                  self.age)
+
+    def __lt__(self, other):
+        if hasattr(other, 'age'):
+            return self.age < other.age
+
+
+def sort_users(user_list):
+    if user_list:
+        return sorted(user_list)
+    return user_list
+
 if __name__ == "__main__":
     # execute only if run as a script
     main()
