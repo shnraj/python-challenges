@@ -31,6 +31,22 @@ def is_permutation(str1, str2):
 # Other solutions: sorting, hash map lookup
 
 
+# USING COUNTER TO TALLY
+from collections import Counter
+
+
+def count_list():
+    cnt = Counter('sahana')  # Counter({'a': 3, 'h': 1, 's': 1, 'n': 1})
+    cnt2 = Counter(['sahana', 'raj'])  # Counter({'sahana': 1, 'raj': 1})
+
+    # Create a list of elements from the Counter object
+    list(cnt.elements())  # ['a', 'a', 'a', 'h', 's', 'n']
+    list(cnt2.elements())  # ['sahana', 'raj']
+
+    # Counter has 'most_common' that allows you to sort items by their count
+    cnt.most_common(2)  # [('a', 3), ('h', 1)]
+
+
 # DETERMINE IF A STRING S1 IS A ROTATION OF ANOTHER STRING S2
 
 # My solution - Time: O(n) Space: O(2n)
