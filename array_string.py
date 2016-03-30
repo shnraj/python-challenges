@@ -46,6 +46,26 @@ def count_list():
     # Counter has 'most_common' that allows you to sort items by their count
     cnt.most_common(2)  # [('a', 3), ('h', 1)]
 
+    c = Counter(a=3, b=1)
+    d = Counter(a=1, b=2)
+
+    c + d                       # add two counters together:  c[x] + d[x]
+    # Counter({'a': 4, 'b': 3})
+    c - d                       # subtract (keeping only positive counts)
+    # Counter({'a': 2})
+    c & d                       # intersection:  min(c[x], d[x])
+    # Counter({'a': 1, 'b': 1})
+    c | d                       # union:  max(c[x], d[x])
+    # Counter({'a': 3, 'b': 2})
+
+
+# Given string L representing a letter and string N representing a newspaper,
+# return true if the L can be written entirely from N and false otherwise.
+def newspaper_letter(N, L):
+    L_dict = Counter(L)
+    N_dict = Counter(N)
+    return N_dict & L_dict == L_dict
+
 
 # DETERMINE IF A STRING S1 IS A ROTATION OF ANOTHER STRING S2
 

@@ -1,6 +1,7 @@
 import unittest
 from array_string import has_unique_chars
 from array_string import is_permutation
+from array_string import newspaper_letter
 from array_string import is_rotation
 from array_string import compress_string
 from array_string import reverse_list
@@ -23,6 +24,15 @@ class TestArrayString(unittest.TestCase):
         self.assertFalse(is_permutation('nib', 'Nbin'))
         self.assertFalse(is_permutation('n ', 'n'))
         self.assertTrue(is_permutation('', ''))
+
+    def test_newspaper_letter(self):
+        self.assertFalse(newspaper_letter('acb ', 'def'))
+        self.assertTrue(newspaper_letter('nib', 'bin'))
+        self.assertFalse(newspaper_letter('nib', 'Nbin'))
+        self.assertFalse(newspaper_letter('nad', 'naad'))
+        self.assertTrue(newspaper_letter('n ', 'n'))
+        self.assertTrue(newspaper_letter('', ''))
+        self.assertTrue(newspaper_letter('aaasd', 'aad'))
 
     def test_is_rotation(self):
         self.assertFalse(is_rotation('asdf', 'sdfaa'))
