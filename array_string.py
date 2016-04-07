@@ -1,6 +1,7 @@
 def main():
-    print has_unique_chars('start')  # False
-    print has_unique_chars('asd')  # True
+    # print has_unique_chars('start')  # False
+    # print has_unique_chars('asd')  # True
+    create_2d_array_board(3)
 
 
 # IMPLEMENT AN ALGORITHM TO DETERMINE IF A STRING HAS ALL UNIQUE CHARACTERS
@@ -125,6 +126,20 @@ def sort_users(user_list):
     if user_list:
         return sorted(user_list)
     return user_list
+
+
+# 2D ARRAY
+# There aren't multidimensional arrays as such in Python,
+# what you have is a list containing other lists.
+def create_2d_array_board(size):
+    board = [[False for x in range(size)] for y in range(size)]
+    # board = [[False, False, False],
+    #          [False, False, False],
+    #          [False, False, False]] if size = 3
+
+    for row in board:
+        print ' '.join(str(value) for value in row)
+
 
 if __name__ == "__main__":
     # execute only if run as a script
