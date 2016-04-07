@@ -137,21 +137,11 @@ def create_2d_array_board(size):
     #          [False, False, False],
     #          [False, False, False]] if size = 3
 
-    x, y = get_random_point(size)
-    board[x][y] = True
+    board[0][0] = True
 
     for row in board:
         print ' '.join(str(value) for value in row)
 
-
-import random
-
-
-def get_random_point(size):
-    x = random.randint(0, size - 1)
-    y = random.randint(0, size - 1)
-
-    return (x, y)
 
 if __name__ == "__main__":
     # execute only if run as a script
