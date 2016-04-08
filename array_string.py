@@ -31,6 +31,8 @@ def is_permutation(str1, str2):
 
 # Other solutions: sorting, hash map lookup
 
+from collections import Counter
+
 
 # Given string L representing a letter and string N representing a newspaper,
 # return true if the L can be written entirely from N and false otherwise.
@@ -162,8 +164,6 @@ def tuple():
     x = t + u
     # ((123, 234, 'hi'), (1, 2, 3, 4, 5))
     min(x)  # (1, 2, 3, 4, 5)
-
-
 
 
 if __name__ == "__main__":
