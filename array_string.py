@@ -143,6 +143,13 @@ def create_2d_array_board(size):
         print ' '.join(str(value) for value in row)
 
 
+# TUPLE
+# Tuple is immutable whereas a list is mutable
+# You can't add/remove elements from a tuple
+# You can use the in operator to check if an element exists in the tuple
+# Tuples are faster than lists
+# Code safer if you “write-protect” data that does not need to be changed
+
 if __name__ == "__main__":
     # execute only if run as a script
     main()
