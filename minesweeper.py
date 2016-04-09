@@ -1,7 +1,5 @@
 import random
 
-# Example: https://gist.github.com/mohd-akram/3057736
-
 
 class Board():
     def __init__(self, size, num_mines):
@@ -31,6 +29,16 @@ class Board():
         for row in self.board:
             print ' '.join(str(val) for val in row)
 
+    def print_partial_board(self, show_list):
+        for x, row in enumerate(self.board):
+            print_row = []
+            for y, val in enumerate(row):
+                if (x, y) in show_list:
+                    print_row.append(str(val))
+                else:
+                    print_row.append(' ')
+            print ' | '.join(print_row)
+
     def add_numbers(self, point_list):
         for i in range(self.size):
             for j in range(self.size):
@@ -51,7 +59,7 @@ class Board():
 def main():
     board = Board(size=6, num_mines=9)
     board.add_mines()
-    board.print_board()
+    board.print_partial_board([(0, 0), (1, 1), (3, 2), (5, 4)])
 
 
 def get_random_point(size):
