@@ -66,3 +66,56 @@ def count_list():
     # Counter({'a': 3, 'b': 2})
 
 
+# 2D ARRAY
+# There aren't multidimensional arrays as such in Python,
+# what you have is a list containing other lists.
+def create_2d_array_board(size):
+    board = [[False for x in range(size)] for y in range(size)]
+    # board = [[False, False, False],
+    #          [False, False, False],
+    #          [False, False, False]] if size = 3
+
+    board[0][0] = True
+
+    for row in board:
+        print ' '.join(str(value) for value in row)
+
+
+# TUPLE
+# A tuple consists of a number of values separated by commas
+# Tuple is immutable whereas a list is mutable
+# You can't add/remove elements from a tuple
+# You can use the in operator to check if an element exists in the tuple
+# Tuples are faster than lists
+# Code safer if you “write-protect” data that does not need to be changed
+def tuple():
+    t = 123, 234, 'hi'
+    # (123, 234, 'hi')
+    t[0]  # 123
+    t[0] = 4  # not possible
+    # TypeError: 'tuple' object does not support item assignment
+
+    u = (1, 2, 3, 4, 5)
+    max(u)  # 5
+    x = t + u
+    # ((123, 234, 'hi'), (1, 2, 3, 4, 5))
+    min(x)  # (1, 2, 3, 4, 5)
+
+
+# SET
+# Does not keep duplicates
+# Frozen set in immutable (cannot .add or .remove anything)
+def set():
+    x = set("hi sahana")
+    x  # {'h', 'i', ' ', 's', 'a', 'n'}
+    y = set('hi', 'sahana')
+    y  # {'hi', 'sahana'}
+
+    # x.union(y, ...) Return a new set with elements from the set and all others
+    # x.intersection(y, ...) Return a new set with elements common to the set and all others
+    # x.difference(y, ...) Return a new set with elements in the set that are not in the others
+    # x.symmetric_difference(y) Return a new set with elements in either the set or other but not both
+    # x.issubset(y)
+    # x.issuperset(y)
+    # x.copy() Makes a shallow copy of x
+
