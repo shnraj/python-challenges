@@ -119,3 +119,18 @@ def set():
     # x.issuperset(y)
     # x.copy() Makes a shallow copy of x
 
+
+# SORT
+def explore_sort():
+    list = [3, 4, 2, 1]
+    # sorted() reates new sorted list
+    sorted_list = sorted(list)
+    # list is [3, 4, 2, 1]
+
+    # sorted also works for dicts - returns list of sorted keys
+    sorted({1: 'D', 2: 'B', 3: 'B', 4: 'E', 5: 'A'})
+    # [1, 2, 3, 4, 5]
+
+    # .sort modifies existing list, only works for lists
+    list.sort()
+    # list is [4, 3, 2, 1]
