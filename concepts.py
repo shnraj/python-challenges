@@ -2,7 +2,6 @@
 
 
 # CLOSURES
-
 # Nested functions that
 # 1) access variables that are local to enclosing scopes,
 # 2) do so when they are executed outside of that scope.
@@ -14,7 +13,6 @@ def makeClosure(x):
 
 
 # PARTIALS
-
 # Makes versions of a function with one or more arguments already filled in
 # The new version of a function documents itself
 
@@ -41,29 +39,26 @@ cube = partial(power, exponent=3)
 from collections import Counter
 
 
-def count_list():
-    cnt = Counter('sahana')  # Counter({'a': 3, 'h': 1, 's': 1, 'n': 1})
-    cnt2 = Counter(['sahana', 'raj'])  # Counter({'sahana': 1, 'raj': 1})
+def explore_counter():
+    cnt = Counter('sahana')
+    assert cnt == Counter({'a': 3, 'h': 1, 's': 1, 'n': 1})
+    cnt2 = Counter(['sahana', 'raj'])
+    assert cnt2 == Counter({'sahana': 1, 'raj': 1})
 
     # Create a list of elements from the Counter object
-    list(cnt.elements())  # ['a', 'a', 'a', 'h', 's', 'n']
-    list(cnt2.elements())  # ['sahana', 'raj']
+    assert list(cnt.elements()) == ['a', 'a', 'a', 'h', 's', 'n']
+    assert list(cnt2.elements()) == ['sahana', 'raj']
 
     # Counter has 'most_common' that allows you to sort items by their count
-    cnt.most_common(2)  # [('a', 3), ('h', 1)]
+    assert cnt.most_common(2) == [('a', 3), ('h', 1)]
 
     c = Counter(a=3, b=1)
     d = Counter(a=1, b=2)
 
-
-    c + d                       # add two counters together:  c[x] + d[x]
-    # Counter({'a': 4, 'b': 3})
-    c - d                       # subtract (keeping only positive counts)
-    # Counter({'a': 2})
-    c & d                       # intersection:  min(c[x], d[x])
-    # Counter({'a': 1, 'b': 1})
-    c | d                       # union:  max(c[x], d[x])
-    # Counter({'a': 3, 'b': 2})
+    assert c + d == Counter({'a': 4, 'b': 3})  # add two counters together:  c[x] + d[x]
+    assert c - d == Counter({'a': 2})          # subtract (keeping only positive counts)
+    assert c & d == Counter({'a': 1, 'b': 1})  # intersection:  min(c[x], d[x])
+    assert c | d == Counter({'a': 3, 'b': 2})  # union:  max(c[x], d[x])
 
 
 # 2D ARRAY
@@ -88,28 +83,29 @@ def create_2d_array_board(size):
 # You can use the in operator to check if an element exists in the tuple
 # Tuples are faster than lists
 # Code safer if you "write-protect" data that does not need to be changed
-def tuple():
+def explore_tuple():
     t = 123, 234, 'hi'
-    # (123, 234, 'hi')
-    t[0]  # 123
-    t[0] = 4  # not possible
+    assert t == (123, 234, 'hi')
+    assert t[0] == 123
+    # not possible
+    # t[0] = 4
     # TypeError: 'tuple' object does not support item assignment
 
     u = (1, 2, 3, 4, 5)
-    max(u)  # 5
+    assert max(u) == 5
     x = t + u
-    # ((123, 234, 'hi'), (1, 2, 3, 4, 5))
-    min(x)  # (1, 2, 3, 4, 5)
+    assert x == (123, 234, 'hi', 1, 2, 3, 4, 5)
+    assert min(x) == 1
 
 
 # SET
 # Does not keep duplicates
 # Frozen set in immutable (cannot .add or .remove anything)
-def set():
+def explore_set():
     x = set("hi sahana")
-    x  # {'h', 'i', ' ', 's', 'a', 'n'}
-    y = set('hi', 'sahana')
-    y  # {'hi', 'sahana'}
+    assert x == {'h', 'i', ' ', 's', 'a', 'n'}
+    y = set(['hi', 'sahana'])
+    assert y == {'hi', 'sahana'}
 
     # x.union(y, ...) Return a new set with elements from the set and all others
     # x.intersection(y, ...) Return a new set with elements common to the set and all others
@@ -216,5 +212,8 @@ def explore_operator():
 
 
 if __name__ == '__main__':
+    explore_counter()
+    explore_tuple()
+    explore_set()
     explore_sort()
     explore_operator()
