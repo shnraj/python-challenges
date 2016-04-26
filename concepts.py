@@ -87,7 +87,7 @@ def create_2d_array_board(size):
 # You can't add/remove elements from a tuple
 # You can use the in operator to check if an element exists in the tuple
 # Tuples are faster than lists
-# Code safer if you “write-protect” data that does not need to be changed
+# Code safer if you "write-protect" data that does not need to be changed
 def tuple():
     t = 123, 234, 'hi'
     # (123, 234, 'hi')
@@ -122,15 +122,99 @@ def set():
 
 # SORT
 def explore_sort():
-    list = [3, 4, 2, 1]
-    # sorted() reates new sorted list
-    sorted_list = sorted(list)
-    # list is [3, 4, 2, 1]
-
-    # sorted also works for dicts - returns list of sorted keys
-    sorted({1: 'D', 2: 'B', 3: 'B', 4: 'E', 5: 'A'})
-    # [1, 2, 3, 4, 5]
+    simple_list = [3, 4, 2, 1]
 
     # .sort modifies existing list, only works for lists
-    list.sort()
-    # list is [4, 3, 2, 1]
+    simple_list.sort()
+    assert simple_list == [1, 2, 3, 4]
+
+    list = [3, 4, 2, 1]
+
+    # sorted() reates new sorted list
+    new_list = sorted(list)
+    assert new_list == [1, 2, 3, 4]
+    # list does not change
+    assert list == [3, 4, 2, 1]
+
+    # Sort a dictionary?
+    # It is not possible to sort a dict. Dicts are inherently orderless,
+    # but other types, such as lists and tuples, are not. So you need a sorted
+    # representation, which will be a list-probably a list of tuples
+    new_list = sorted({1: 'D', 2: 'B', 3: 'B', 4: 'E', 5: 'A'})
+    assert new_list == [1, 2, 3, 4, 5]
+
+    student_tuples = [
+        ('john', 'A', 15),
+        ('jane', 'B', 12),
+        ('dave', 'B', 10),
+    ]
+
+    new_student_tuples = sorted(student_tuples, key=sort_key)
+    assert new_student_tuples == [
+        ('dave', 'B', 10),
+        ('jane', 'B', 12),
+        ('john', 'A', 15),
+    ]
+
+    new_list = sorted(list, reverse=True)
+    assert new_list == [4, 3, 2, 1]
+
+
+def sort_key(item):
+    return item[2]
+
+# OPERATOR
+# Python provides convenience functions to make accessor functions easier and faster.
+# The operator module has itemgetter, attrgetter, and starting in Python 2.6 a methodcaller function.
+
+# Each of these returns a function -
+# operator.itemgetter(item)
+# operator.attrgetter('.attribute')
+# operator.methodcaller('method name' or 'list of comma separated method names')
+import operator
+
+
+def explore_operator():
+    student_tuples = [
+        ('john', 'A', 15),
+        ('jane', 'B', 12),
+        ('dave', 'B', 10)
+    ]
+
+    assert sorted(student_tuples, key=operator.itemgetter(2)) == [
+        ('dave', 'B', 10),
+        ('jane', 'B', 12),
+        ('john', 'A', 15)
+    ]
+
+    class Student:
+        def __init__(self, name, grade, age):
+            self.name = name
+            self.grade = grade
+            self.age = age
+
+        def __repr__(self):
+            return repr((self.name, self.grade, self.age))
+
+        def weighted_grade(self):
+            return 'CBA'.index(self.grade) / float(self.age)
+
+    s1 = Student('john', 'A', 15)
+    s2 = Student('jane', 'B', 12)
+    s3 = Student('dave', 'B', 10)
+
+    student_objects = [
+        s1,
+        s2,
+        s3
+    ]
+
+    assert sorted(student_objects, key=operator.attrgetter('age')) == [s3, s2, s1]
+
+    # Using methodgetter
+    sorted(student_objects, key=operator.methodcaller('weighted_grade'))
+
+
+if __name__ == '__main__':
+    explore_sort()
+    explore_operator()
