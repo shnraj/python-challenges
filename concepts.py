@@ -139,6 +139,8 @@ def explore_sort():
     new_list = sorted({1: 'D', 2: 'B', 3: 'B', 4: 'E', 5: 'A'})
     assert new_list == [1, 2, 3, 4, 5]
 
+    # To sort a dict look at "Ordered Dict"
+
     student_tuples = [
         ('john', 'A', 15),
         ('jane', 'B', 12),
@@ -209,6 +211,20 @@ def explore_operator():
 
     # Using methodgetter
     sorted(student_objects, key=operator.methodcaller('weighted_grade'))
+
+
+# ORDERED DICT
+from collections import OrderedDict
+
+
+def explore_ordereddict():
+    d = {'banana': 3, 'apple': 4, 'pear': 1, 'orange': 2}
+    assert d.items() ==  [('banana', 3), ('apple', 4), ('pear', 1), ('orange', 2)]
+
+    ordered_d = OrderedDict(sorted(d.items(), lambda x: x[1]))
+
+    assert ordered_d == OrderedDict(
+        [('apple', 4), ('banana', 3), ('orange', 2), ('pear', 1)])
 
 
 if __name__ == '__main__':
