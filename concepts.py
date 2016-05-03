@@ -246,6 +246,23 @@ def explore_iterator():
     # TODO: write an iterator
 
 
+# GENERATOR
+# a simpler iterator that adds functionality/logic to each iteration
+def explore_generator():
+
+    def nums(n):
+        i = 0
+        while i < n:
+            yield i
+            i += 1
+
+    y = nums(3)
+    assert y.next() == 0
+    assert y.next() == 1
+    assert y.next() == 2
+    # y.next() will raise a StopIteration error
+
+
 if __name__ == '__main__':
     explore_counter()
     explore_tuple()
@@ -253,3 +270,4 @@ if __name__ == '__main__':
     explore_sort()
     explore_operator()
     explore_iterator()
+    explore_generator()
