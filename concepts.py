@@ -219,12 +219,31 @@ from collections import OrderedDict
 
 def explore_ordereddict():
     d = {'banana': 3, 'apple': 4, 'pear': 1, 'orange': 2}
-    assert d.items() ==  [('banana', 3), ('apple', 4), ('pear', 1), ('orange', 2)]
+    assert d.items() == [('banana', 3), ('apple', 4), ('pear', 1), ('orange', 2)]
 
     ordered_d = OrderedDict(sorted(d.items(), lambda x: x[1]))
 
     assert ordered_d == OrderedDict(
         [('apple', 4), ('banana', 3), ('orange', 2), ('pear', 1)])
+
+
+# ITERATOR
+# iter takes an iterable object and returns an iterator
+def explore_iterator():
+    x = iter([1, 2, 3])  # listiterator
+    y = iter({'x': 1, 'y': 2})  # dictionary-keyiterator
+    z = iter((1, 2, 3, 4))  # tupleiterator
+
+    assert x.next() == 1
+    # When it reaches the end it throws a StopIteration error
+
+    assert list(z) == [1, 2, 3, 4]
+
+    # you can only use an iterator once
+    assert sum(x) == 5  # only sums what is left of the iterator
+    # since we already called x.next once, it does not get added
+
+    # TODO: write an iterator
 
 
 if __name__ == '__main__':
@@ -233,3 +252,4 @@ if __name__ == '__main__':
     explore_set()
     explore_sort()
     explore_operator()
+    explore_iterator()
