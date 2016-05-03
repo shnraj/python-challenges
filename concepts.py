@@ -239,11 +239,35 @@ def explore_iterator():
 
     assert list(z) == [1, 2, 3, 4]
 
-    # you can only use an iterator once
+    # Iterator objects in Python are canonically "use once"
+    # - once you've iterated through an iterator, it's not expected
+    # that you'll be able to iterate through it again.
     assert sum(x) == 5  # only sums what is left of the iterator
     # since we already called x.next once, it does not get added
 
-    # TODO: write an iterator
+
+# List iterator
+class ListIterator():
+    def __init__(self, arr):
+        self.arr = arr
+        self.i = 0
+
+    def __next__(self):
+        ''' Called whenever you retrieve the next value from an iterator '''
+        try:
+            val = self.arr[self.i]
+            self.i += 1
+            return val
+        except:
+            raise StopIteration()
+
+    def __iter__(self):
+        ''' Called whenever you create a new iterator '''
+        return self
+
+    # def __reversed__(self):
+    # Takes an existing sequence and returns an iterator that yields the
+    # items in the sequence in reverse order, from last to first
 
 
 # GENERATOR
