@@ -1,7 +1,8 @@
 def main():
     # print has_unique_chars('start')  # False
     # print has_unique_chars('asd')  # True
-    create_2d_array_board(3)
+    times = [('Alex', [1000, 1030]), ('Kim', [900, 1020])]
+    flatten_times(times)
 
 
 # IMPLEMENT AN ALGORITHM TO DETERMINE IF A STRING HAS ALL UNIQUE CHARACTERS
@@ -128,6 +129,38 @@ def sort_users(user_list):
     if user_list:
         return sorted(user_list)
     return user_list
+
+
+# FLATTEN OVERLAPING TIMES
+# times is a list of tuples [('Alex', [1000, 1030]), ('Kim', [900, 1020])]
+# Currently only works for 2 time spans
+def flatten_times(times):
+    new_times_list = []
+    print 'Before:'
+    print times
+    sorted_times = sorted(times, key=lambda x: x[1][0])
+    for i in range(0, len(sorted_times), 2):
+        first = sorted_times[i]
+        second = sorted_times[i+1] if len(sorted_times)-1 > i else None
+        if second:
+            first_start = first[1][0]
+            first_end = first[1][1]
+            first_name = first[0]
+            second_start = second[1][0]
+            second_end = second[1][1]
+            second_name = second[0]
+            if first_end > second_start:
+                new_times_list.append((first_name, [first_start, second_start]))
+                new_times_list.append((first_name + second_name, [second_start, first_end]))
+                if second_end > first_end:
+                    new_times_list.append((second_name, [first_end, second_end]))
+                else:
+                    new_times_list.append((first_name, [second_end, first_end]))
+            else:
+                new_times_list.append(first)
+                new_times_list.append(second)
+    print 'After:'
+    print new_times_list
 
 
 if __name__ == "__main__":
