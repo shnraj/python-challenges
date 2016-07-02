@@ -287,6 +287,31 @@ def explore_generator():
     # y.next() will raise a StopIteration error
 
 
+# THREADING
+import threading
+
+
+def worker(i):
+    print 'Worker ' + str(i)
+
+
+# Test run time with import timeit
+# timeit.timeit('explore_threading', setup='from concepts import explore_threading')
+# 0.019
+
+def explore_threading():
+    for i in range(5):
+        thread = threading.Thread(target=worker(i))
+        thread.start()
+
+
+# timeit.timeit('explore_without_threading', setup='from concepts import explore_without_threading')
+# 0.034
+
+def explore_without_threading():
+    for i in range(5):
+        print 'Worker ' + i
+
 if __name__ == '__main__':
     explore_counter()
     explore_tuple()
@@ -295,3 +320,5 @@ if __name__ == '__main__':
     explore_operator()
     explore_iterator()
     explore_generator()
+    explore_threading()
+
