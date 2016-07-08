@@ -312,6 +312,20 @@ def explore_without_threading():
     for i in range(5):
         print 'Worker ' + i
 
+
+# READ FILE
+def explore_read_write_file():
+    file_object = open('input.txt', 'r')  # 'r' read, 'w' write, 'r+' read/write
+    output_file_object = open('output.txt', 'w')
+    file_object.read()  # Read the entire file
+
+    # Read first 10 lines of file and copy to output file
+    for lines in range(10):
+        line = file_object.readline()
+        output_file_object.write(line)
+    file_object.close()
+
+
 if __name__ == '__main__':
     explore_counter()
     explore_tuple()
@@ -321,4 +335,3 @@ if __name__ == '__main__':
     explore_iterator()
     explore_generator()
     explore_threading()
-
