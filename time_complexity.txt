@@ -1,0 +1,14 @@
+TIME COMPLEXITY
+
+LIST
+- x in list: O(n)
+
+SET
+- Convert list to set (scan all the elements in a list to build a hash-table): O(n)
+- x in set: (1)
+- sorted(list): O(n log n)
+
+- Lookup in set is faster than lookup in list. Enev converting a list to a set is faster.
+  http://stackoverflow.com/questions/25294897/why-is-converting-a-list-to-a-set-faster-than-using-just-list-to-compute-a-list
+
+
