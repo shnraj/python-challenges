@@ -1,5 +1,7 @@
 TIME COMPLEXITY
 
+https://www.ics.uci.edu/~pattis/ICS-33/lectures/complexitypython.txt
+
 LIST
 - x in list: O(n)
 
@@ -10,5 +12,3 @@ SET
 
 - Lookup in set is faster than lookup in list. Enev converting a list to a set is faster.
   http://stackoverflow.com/questions/25294897/why-is-converting-a-list-to-a-set-faster-than-using-just-list-to-compute-a-list
-
-
