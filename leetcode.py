@@ -58,7 +58,7 @@ class LLNode(object):
         self.next = next
 
 
-class Solution(object):
+class LLRandomNodeSolution(object):
 
     def __init__(self, head):
         """
@@ -85,6 +85,73 @@ class Solution(object):
         """
         print self.arr[randint(0, len(self.arr) - 1)]
 
+
+###
+
+# 109. Convert Sorted List to Binary Search Tree
+
+# Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.
+
+###
+
+import math
+
+# Definition for singly-linked list.
+class ListNode(object):
+    def __init__(self, x, next=None):
+        self.val = x
+        self.next = next
+
+
+# Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+    def printTree(self):
+        print_arr = []
+        pos = 0
+        print_arr.append(self)
+        while pos < len(print_arr):
+            if print_arr[pos].left:
+                print_arr.append(print_arr[pos].left)
+            if print_arr[pos].right:
+                print_arr.append(print_arr[pos].right)
+            pos += 1
+        for node in print_arr:
+            print node.val
+
+
+class LLToTreeSolution(object):
+    def sortedListToBST(self, head):
+        """
+        :type head: ListNode
+        :rtype: TreeNode
+        """
+        # Convert linked list to array
+        arr = [head.val]
+        while head.next is not None:
+            arr.append(head.next.val)
+            head = head.next
+
+        # Function that converts list of sorted ints to binary tree
+        def treeFromList(numList):
+            if len(numList) == 0:
+                return None
+            elif len(numList) == 1:
+                return TreeNode(numList[0])
+            else:
+                half = int(math.ceil(float(len(numList))/2)) - 1
+                node = TreeNode(numList[half])
+                node.left = treeFromList(numList[:half])
+                node.right = treeFromList(numList[half+1:])
+            return node
+
+        return treeFromList(arr).printTree()
+
+
 if __name__ == '__main__':
     # 137. Single Number II
     nums = [9, 2, 2, 2, 5, 5, 5]
@@ -94,6 +161,11 @@ if __name__ == '__main__':
 
     # 382. Linked List Random Node
     h = LLNode(1, LLNode(2, LLNode(3)))
-    sol = Solution(h)
+    sol = LLRandomNodeSolution(h)
     sol.getRandom()
 
+    # 109. Convert Sorted List to Binary Search Tree
+    h = ListNode(1, ListNode(2, ListNode(4, ListNode(6, ListNode(7, ListNode(9))))))
+    h2 = ListNode(6, ListNode(7, ListNode(9)))
+    sol = LLToTreeSolution()
+    sol.sortedListToBST(h)
