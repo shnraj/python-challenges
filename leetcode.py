@@ -151,6 +151,30 @@ class LLToTreeSolution(object):
 
         return treeFromList(arr).printTree()
 
+###
+
+# 3. Longest Substring Without Repeating Characters
+
+# Given a string, find the length of the longest substring without repeating characters.
+
+###
+
+
+def lengthOfLongestSubstring(s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        highest_int = 0
+        seen = set()
+        for x in s:
+            if x in seen:
+                highest_int = max(len(seen), highest_int)
+                seen = set()
+                seen.add(x)
+            else:
+                seen.add(x)
+        print highest_int
 
 if __name__ == '__main__':
     # 137. Single Number II
@@ -169,3 +193,8 @@ if __name__ == '__main__':
     h2 = ListNode(6, ListNode(7, ListNode(9)))
     sol = LLToTreeSolution()
     sol.sortedListToBST(h)
+
+    # 3. Longest Substring Without Repeating Characters
+    lengthOfLongestSubstring("abcabcbb")
+    lengthOfLongestSubstring("bbbb")
+    lengthOfLongestSubstring("pwwkew")
