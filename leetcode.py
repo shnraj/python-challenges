@@ -209,6 +209,23 @@ def maximumGap(self, nums):
     return highest_diff
 
 
+###
+
+# 94. Binary Tree Inorder Traversal
+
+# Given a binary tree, return the inorder traversal of its nodes' values.
+
+###
+
+def inorderTraversal(self, root):
+    """
+    :type root: TreeNode
+    :rtype: List[int]
+    """
+    if root is None:
+        return []
+    return inorderTraversal(root.left) + [root.val] + inorderTraversal(root.right)
+
 if __name__ == '__main__':
     # 137. Single Number II
     nums = [9, 2, 2, 2, 5, 5, 5]
