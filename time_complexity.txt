@@ -7,7 +7,7 @@ LIST
 
 SET
 - Convert list to set (scan all the elements in a list to build a hash-table): O(n)
-- x in set: (1)
+- x in set: O(1)
 - sorted(list): O(n log n)
 
 - Lookup in set is faster than lookup in list. Enev converting a list to a set is faster.

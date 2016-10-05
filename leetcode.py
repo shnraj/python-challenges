@@ -215,6 +215,8 @@ def maximumGap(self, nums):
 
 # Given a binary tree, return the inorder traversal of its nodes' values.
 
+# Recursive solution is trivial, what is the iterative solution?
+
 ###
 
 def inorderTraversal(self, root):
@@ -226,35 +228,70 @@ def inorderTraversal(self, root):
         return []
     return inorderTraversal(root.left) + [root.val] + inorderTraversal(root.right)
 
+
+###
+
+# 42. Trapping Rain Water
+
+# Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.
+
+###
+
+def trap(height):
+    """
+    :type height: List[int]
+    :rtype: int
+    """
+    total = 0
+    for num in range(max(height), 0, -1):
+        row = [i for i, x in enumerate(height) if x == num]
+        total += count(row)
+        for v in row:
+            height[v] = height[v] - 1
+    print total
+
+
+def count(row):
+    count = 0
+    for i, x in enumerate(row[1:]):
+        y = x - row[i] - 1
+        count += y
+    return count
+
+
 if __name__ == '__main__':
     # 137. Single Number II
-    nums = [9, 2, 2, 2, 5, 5, 5]
-    sol1(nums)
-    sol2(nums)
-    sol3(nums)
+    #nums = [9, 2, 2, 2, 5, 5, 5]
+    #sol1(nums)
+    #sol2(nums)
+    #sol3(nums)
 
-    # 382. Linked List Random Node
-    h = LLNode(1, LLNode(2, LLNode(3)))
-    sol = LLRandomNodeSolution(h)
-    sol.getRandom()
+    ## 382. Linked List Random Node
+    #h = LLNode(1, LLNode(2, LLNode(3)))
+    #sol = LLRandomNodeSolution(h)
+    #sol.getRandom()
 
-    # 109. Convert Sorted List to Binary Search Tree
-    h = ListNode(1, ListNode(2, ListNode(4, ListNode(6, ListNode(7, ListNode(9))))))
-    h2 = ListNode(6, ListNode(7, ListNode(9)))
-    sol = LLToTreeSolution()
-    sol.sortedListToBST(h)
+    ## 109. Convert Sorted List to Binary Search Tree
+    #h = ListNode(1, ListNode(2, ListNode(4, ListNode(6, ListNode(7, ListNode(9))))))
+    #h2 = ListNode(6, ListNode(7, ListNode(9)))
+    #sol = LLToTreeSolution()
+    #sol.sortedListToBST(h)
 
-    # 3. Longest Substring Without Repeating Characters
-    lengthOfLongestSubstring("abcabcbb")
-    lengthOfLongestSubstring("bbbb")
-    lengthOfLongestSubstring("pwwkew")
-    lengthOfLongestSubstring("c")
-    lengthOfLongestSubstring("")
-    lengthOfLongestSubstring("dvdf")
-    lengthOfLongestSubstring("abcadef")
+    ## 3. Longest Substring Without Repeating Characters
+    #lengthOfLongestSubstring("abcabcbb")
+    #lengthOfLongestSubstring("bbbb")
+    #lengthOfLongestSubstring("pwwkew")
+    #lengthOfLongestSubstring("c")
+    #lengthOfLongestSubstring("")
+    #lengthOfLongestSubstring("dvdf")
+    #lengthOfLongestSubstring("abcadef")
 
-    # 164. Maximum Gap
-    maximumGap([1, 4, 7, 3, 2])
-    maximumGap([1000, 4, 7, 3, 2])
-    maximumGap([1, 1, 1])
-    maximumGap([1])
+    ## 164. Maximum Gap
+    #maximumGap([1, 4, 7, 3, 2])
+    #maximumGap([1000, 4, 7, 3, 2])
+    #maximumGap([1, 1, 1])
+    #maximumGap([1])
+
+    # 42. Trapping Rain Water
+    trap([0,1,0,2,1,0,1,3,2,1,2,1])
+
