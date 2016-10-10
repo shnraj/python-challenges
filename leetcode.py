@@ -315,10 +315,83 @@ def myAtoi(str):
             return INT_MIN
     return number
 
+###
+
+# 79. Word Search
+
+# Given a 2D board and a word, find if the word exists in the grid.
+
+# The word can be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. 
+# The same letter cell may not be used more than once.
+
+###
+
+
+class Sol(object):
+    def exist(self, board, word):
+        """
+        :type board: List[List[str]]
+        :type word: str
+        :rtype: bool
+        """
+        self.board = board
+        if word and board:
+            starts = []
+            for x in range(len(board)):
+                for y in range(len(board[0])):
+                    if board[x][y] == word[0]:
+                        starts.append(Coor(x, y))
+
+            for start in starts:
+                if self.test_start(start, word[1:], [start]):
+                    return True
+        return False
+
+    def test_start(self, start_coor, word, seen):
+        if word:
+            for ch in word:
+                spots = self.get_adjacent_spots(start_coor)
+                result = False
+                for spot in spots:
+                    if ch == self.board[spot.x][spot.y] and not spot.found(seen):
+                        new_seen = seen[:]
+                        new_seen.append(spot)
+                        result = result or self.test_start(spot, word[1:], new_seen)
+                return result
+        else:
+            return True
+
+    def get_adjacent_spots(self, coor):
+        # Returns list of coordinates
+        directions = [Coor(0, 1), Coor(1, 0), Coor(-1, 0), Coor(0, -1)]
+        spots = []
+        for dir in directions:
+            new_coor = coor.add(dir)
+            if new_coor.x >= 0 and new_coor.y >= 0 and new_coor.x < len(self.board) and new_coor.y < len(self.board[0]):
+                spots.append(new_coor)
+        return spots
+
+
+class Coor():
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def add(self, other_coor):
+        return Coor(self.x + other_coor.x, self.y + other_coor.y)
+
+    def found(self, arr_of_coor):
+        for coor in arr_of_coor:
+            if self.x == coor.x and self.y == coor.y:
+                return True
+        return False
+
+
 if __name__ == '__main__':
     # 137. Single Number II
     #nums = [9, 2, 2, 2, 5, 5, 5]
     #sol1(nums)
+
     #sol2(nums)
     #sol3(nums)
 
@@ -357,3 +430,14 @@ if __name__ == '__main__':
     #myAtoi('+-2')
     #myAtoi('+1')
     #myAtoi('2147483690')
+
+    # 79. Word Search
+    #x = Sol()
+    #print x.exist(["ABCE", "SFCS", "ADEE"], "ABCCED")  # True
+    #print x.exist(["ABCE", "SFCS", "ADEE"], "ABZ")  # False
+    #print x.exist(["ABCE", "SFCS", "ADEE"], "ABCB")  # False
+    #print x.exist(["ABCE", "SFCS", "ADEE"], "")  # False
+    #print x.exist([""], "ABCCED")  # False
+    #print x.exist(["b", "a", "b"], "bbabab")  # False
+    #print x.exist(["CAA", "AAA", "BCD"], "AAB")  # True
+    #print x.exist(["ABCE", "SFES", "ADEE"], "ABCEFSADEESE")  # True
