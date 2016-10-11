@@ -386,6 +386,36 @@ class Coor():
                 return True
         return False
 
+###
+
+# 290. Word Pattern
+
+# Given a pattern and a string str, find if str follows the same pattern.
+
+# Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty word in str.
+
+# Example: pattern = "abba", str = "dog cat cat dog" should return true.
+
+###
+
+
+def wordPattern(pattern, str):
+    words = str.split()
+    pattern_dict = {}
+    if pattern and str:
+        if len(words) - len(pattern) != 0:
+            return False
+        for i in range(len(pattern)):
+            reverse_dict = {v: k for k, v in pattern_dict.iteritems()}
+            if pattern[i] in pattern_dict and pattern_dict[pattern[i]] != words[i]:
+                return False
+            elif words[i] in reverse_dict and reverse_dict[words[i]] != pattern[i]:
+                return False
+            else:
+                pattern_dict[pattern[i]] = words[i]
+        return True
+    return False
+
 
 if __name__ == '__main__':
     # 137. Single Number II
@@ -441,3 +471,11 @@ if __name__ == '__main__':
     #print x.exist(["b", "a", "b"], "bbabab")  # False
     #print x.exist(["CAA", "AAA", "BCD"], "AAB")  # True
     #print x.exist(["ABCE", "SFES", "ADEE"], "ABCEFSADEESE")  # True
+
+    # 290. Word Pattern
+    #print wordPattern('abba', "dog cat cat dog")  # True
+    #print wordPattern('aba', "dog cat cat dog")  # False
+    #print wordPattern('', "dog cat cat dog")  # False
+    #print wordPattern('', "")  # False
+    #print wordPattern("abcd", "ad sd df sd")  # False
+    #print wordPattern("abb", "ad sd df")  # False
