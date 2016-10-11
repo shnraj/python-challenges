@@ -416,6 +416,28 @@ def wordPattern(pattern, str):
         return True
     return False
 
+###
+
+# 383. Ransom Note
+
+###
+
+from collections import Counter
+
+
+def canConstruct(ransomNote, magazine):
+        """
+        :type ransomNote: str
+        :type magazine: str
+        :rtype: bool
+        """
+        if not ransomNote:
+            return True
+        if ransomNote and magazine:
+            return Counter(ransomNote) & Counter(magazine) == Counter(ransomNote)
+        return False
+
+
 
 if __name__ == '__main__':
     # 137. Single Number II
@@ -479,3 +501,12 @@ if __name__ == '__main__':
     #print wordPattern('', "")  # False
     #print wordPattern("abcd", "ad sd df sd")  # False
     #print wordPattern("abb", "ad sd df")  # False
+
+    # 383. Ransom Note
+    print canConstruct("a", "b")  # False
+    print canConstruct("aa", "ab")  # False
+    print canConstruct("aa", "aab")  # True
+    print canConstruct("", "")  # True
+    print canConstruct("", "asd")  # True
+    print canConstruct("asd", "")  # False
+    print canConstruct("ab", "ba")  # True
