@@ -438,6 +438,54 @@ def canConstruct(ransomNote, magazine):
         return False
 
 
+def reverseString(s):
+    """
+    :type s: str
+    :rtype: str
+    """
+    if s:
+        arr_s = list(s)
+        for i in range(len(arr_s)/2):
+            op_i = len(s)-1-i
+            tmp = s[i]
+            arr_s[i] = arr_s[op_i]
+            arr_s[op_i] = tmp
+        return ''.join(arr_s)
+    else:
+        return ''
+
+def reverseStringPythonic(s):
+    """
+    :type s: str
+    :rtype: str
+    """
+    return s[::-1]
+
+
+###
+
+# 1. Two Sum
+
+# Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+
+# You may assume that each input would have exactly one solution.
+
+###
+
+
+def twoSum(nums, target):
+    """
+    :type nums: List[int]
+    :type target: int
+    :rtype: List[int]
+    """
+    if nums:
+        new_nums = nums[:]
+        for i, num in enumerate(nums):
+            new_nums.pop(0)
+            if target - num in new_nums:
+                return [i, new_nums.index(target - num) + i + 1]
+
 
 if __name__ == '__main__':
     # 137. Single Number II
@@ -503,10 +551,23 @@ if __name__ == '__main__':
     #print wordPattern("abb", "ad sd df")  # False
 
     # 383. Ransom Note
-    print canConstruct("a", "b")  # False
-    print canConstruct("aa", "ab")  # False
-    print canConstruct("aa", "aab")  # True
-    print canConstruct("", "")  # True
-    print canConstruct("", "asd")  # True
-    print canConstruct("asd", "")  # False
-    print canConstruct("ab", "ba")  # True
+    #print canConstruct("a", "b")  # False
+    #print canConstruct("aa", "ab")  # False
+    #print canConstruct("aa", "aab")  # True
+    #print canConstruct("", "")  # True
+    #print canConstruct("", "asd")  # True
+    #print canConstruct("asd", "")  # False
+    #print canConstruct("ab", "ba")  # True
+
+    # 344. Reverse String
+    #print reverseString('hello')
+    #print reverseStringPythonic('hello')
+
+    # 1. Two Sum
+    #print twoSum([9, 1, 8], 9)
+    #print twoSum([], 0)
+    #print twoSum([1, 3, 4], 5)
+    #print twoSum([1, 1, 1, 2], 3)
+    #print twoSum([0, 0], 0)
+    #print twoSum([1, 0], 2)
+    #print twoSum([0, 4, 3, 0], 0)
