@@ -102,6 +102,14 @@ class ListNode(object):
         self.val = x
         self.next = next
 
+    def get_all_data(self):
+        current_node = self
+        values = []
+        while current_node is not None:
+            values.append(current_node.val)
+            current_node = current_node.next
+        return values
+
 
 # Definition for a binary tree node.
 class TreeNode(object):
@@ -486,6 +494,47 @@ def twoSum(nums, target):
             if target - num in new_nums:
                 return [i, new_nums.index(target - num) + i + 1]
 
+###
+
+# 2. Add Two Numbers
+
+# You are given two linked lists representing two non-negative numbers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
+
+# Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+# Output: 7 -> 0 -> 8
+
+###
+
+def addTwoNumbers(l1, l2):
+    """
+    :type l1: ListNode
+    :type l2: ListNode
+    :rtype: ListNode
+    """
+    if l1 or l2:
+        sum_arr = []
+        sum_arr.append(getattr(l1, "val", 0) + getattr(l2, "val", 0))
+        while hasattr(l1, "next") or hasattr(l2, "next"):
+            l1 = getattr(l1, "next", l1)
+            l2 = getattr(l2, "next", l2)
+            if not (l1 is None and l2 is None):
+                sum_arr.append(getattr(l1, "val", 0) + getattr(l2, "val", 0))
+
+        carry = 0
+        ret_num_arr = []
+        for num in sum_arr:
+            new_carry = (num + carry)/10
+            new_num = (num + carry) - new_carry*10
+            ret_num_arr.append(new_num)
+            carry = new_carry
+        if carry:
+            ret_num_arr.append(carry)
+
+        ll = None
+        for n in ret_num_arr[::-1]:
+            ll = ListNode(n, ll)
+        return ll.get_all_data()
+
 
 if __name__ == '__main__':
     # 137. Single Number II
@@ -571,3 +620,16 @@ if __name__ == '__main__':
     #print twoSum([0, 0], 0)
     #print twoSum([1, 0], 2)
     #print twoSum([0, 4, 3, 0], 0)
+
+    # 2. Add Two Numbers
+    #h1 = ListNode(1, ListNode(2, ListNode(9, ListNode(9, ListNode(9, ListNode(9))))))
+    #h2 = ListNode(6, ListNode(7, ListNode(9)))
+    #print addTwoNumbers(h1, h2)
+
+    #h1 = ListNode(1, ListNode(2))
+    #h2 = ListNode(9)
+    #print addTwoNumbers(h1, h2)
+
+    #h1 = ListNode(2, ListNode(4, ListNode(3)))
+    #h2 = ListNode(5, ListNode(6, ListNode(4)))
+    #print addTwoNumbers(h1, h2)
