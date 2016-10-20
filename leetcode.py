@@ -536,6 +536,24 @@ def addTwoNumbers(l1, l2):
         return ll.get_all_data()
 
 
+##
+
+# 195. Tenth Line
+
+# How would you print just the 10th line of a file?
+
+##
+
+def printLine10():
+    file_object = open('time_complexity.txt', 'r')
+    line_count = 1
+    for line in file_object:
+        if line_count == 10:
+            print line
+            return
+        else:
+            line_count += 1
+
 if __name__ == '__main__':
     # 137. Single Number II
     #nums = [9, 2, 2, 2, 5, 5, 5]
@@ -633,3 +651,6 @@ if __name__ == '__main__':
     #h1 = ListNode(2, ListNode(4, ListNode(3)))
     #h2 = ListNode(5, ListNode(6, ListNode(4)))
     #print addTwoNumbers(h1, h2)
+
+    # 195. Tenth Line
+    #printLine10()
